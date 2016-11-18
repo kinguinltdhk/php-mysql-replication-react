@@ -112,8 +112,13 @@ class BinLogConnectReact implements BinLogConnectInterface
      */
     public function connectToStream(MySQLReplicationFactory $factory)
     {
+        if (false === filter_var($this->config->getIp(), FILTER_VALIDATE_IP)) {
+            $ip = gethostbyname($this->config->getIp());
+        } else {
+            $ip = $this->config->getIp();
+        }
         $s = new TcpConnector($this->loop);
-        return $s->create($this->config->getIp(), $this->config->getPort())->then(function(Stream $st) use ($factory) {
+        return $s->create($ip, $this->config->getPort())->then(function(Stream $st) use ($factory) {
             $this->socket = $st;
             $this->socket->bufferSize = null;
             if (!$this->socket->isReadable() || !$this->socket->isWritable()) {
