@@ -1,0 +1,26 @@
+{
+  "name": "maciejmrozinski/php-mysql-replication-react",
+  "description": "ReactPHP adapter for php-mysql-replication library",
+  "minimum-stability": "stable",
+  "authors": [
+    {
+      "name": "Maciej Mroziński",
+      "email": "maciej.k.mrozinski@gmail.com"
+    }
+  ],
+  "require": {
+    "krowinski/php-mysql-replication": "dev-master",
+    "react/socket-client": "0.5.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "MySQLReplicationReact\\": "src/"
+    }
+  },
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/b3k/php-mysql-replication"
+    }
+  ]
+}
