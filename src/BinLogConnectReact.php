@@ -129,6 +129,19 @@ class BinLogConnectReact implements BinLogConnectInterface
                 $this->buffer = $this->buffer . $data;
             });
 
+            $this->socket->on('error', function () {
+                throw new BinLogException('Socket error');
+            });
+            $this->socket->on('disconnect', function () {
+                throw new BinLogException('Socket disconnect');
+            });
+            $this->socket->on('end', function () {
+                throw new BinLogException('Socket end');
+            });
+            $this->socket->on('close', function () {
+                throw new BinLogException('Socket close');
+            });
+
             return $this->serverInfo()->then(function() {
                 return $this->auth();
             })->then(function() {
