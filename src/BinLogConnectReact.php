@@ -114,6 +114,9 @@ class BinLogConnectReact implements BinLogConnectInterface
     {
         if (false === filter_var($this->config->getIp(), FILTER_VALIDATE_IP)) {
             $ip = gethostbyname($this->config->getIp());
+            if ($ip == $this->config->getIp()) {
+                throw new BinLogException('Unable to resolve hostname: ' . $this->config->getIp());
+            }
         } else {
             $ip = $this->config->getIp();
         }
@@ -130,16 +133,16 @@ class BinLogConnectReact implements BinLogConnectInterface
             });
 
             $this->socket->on('error', function () {
-                throw new BinLogException('Socket error');
+                throw new BinLogException('BinLog socket error');
             });
             $this->socket->on('disconnect', function () {
-                throw new BinLogException('Socket disconnect');
+                throw new BinLogException('BinLog socket disconnect');
             });
             $this->socket->on('end', function () {
-                throw new BinLogException('Socket end');
+                throw new BinLogException('BinLog socket end');
             });
             $this->socket->on('close', function () {
-                throw new BinLogException('Socket close');
+                throw new BinLogException('BinLog socket close');
             });
 
             return $this->serverInfo()->then(function() {
