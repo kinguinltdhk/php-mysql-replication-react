@@ -9,7 +9,7 @@
     }
   ],
   "require": {
-    "krowinski/php-mysql-replication": "dev-master",
+    "krowinski/php-mysql-replication": "dev-master#dd92ecb485df5d6aa35f9310f00e5e351f724864",
     "react/socket-client": "0.5.*"
   },
   "autoload": {
@@ -20,7 +20,7 @@
   "repositories": [
     {
       "type": "git",
-      "url": "https://github.com/b3k/php-mysql-replication"
+      "url": "https://github.com/kinguinltdhk/php-mysql-replication"
     }
   ]
 }
